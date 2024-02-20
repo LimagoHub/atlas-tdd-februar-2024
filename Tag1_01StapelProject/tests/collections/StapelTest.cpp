@@ -61,3 +61,26 @@ TEST_F(StapelTest, push__Overflow__StapelExceptionIsThrown_variante){
     }
 
 }
+
+TEST_F(StapelTest, isFull__FullStack__returnsTrue) {
+    // Arrange
+    fillUpToLimitWithoutException();
+
+    // Act
+    auto result = objectUnderTest.isFull();
+
+    // Assertion
+    EXPECT_TRUE(result);
+
+}
+TEST_F(StapelTest, isFull__NotFullStack__returnsFalse) {
+    // Arrange
+    // Ok
+
+    // Act
+    auto result = objectUnderTest.isFull();
+
+    // Assertion
+    EXPECT_FALSE(result);
+
+}
