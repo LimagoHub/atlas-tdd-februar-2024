@@ -15,7 +15,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-set(SOURCE test.cpp)
+set(SOURCE test.cpp Mockpersonen_repository.h services/personen_service_impl_test.cpp services/personen_service_impl_test.h)
 
 
 

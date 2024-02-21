@@ -13,7 +13,7 @@ set(PROJ_CONFIG $<CONFIG>)
 add_executable(
 	Tag1_02SchweineProjekt 
 	source/main.cpp
-		source/tiere/Schwein.h)
+		source/tiere/Schwein.h source/Stapel.h source/DependencyImpl.h source/MyServiceUsingDependency.h source/Dependency.h source/math/Multiplizierer.h source/math/MultipliziererImpl.h source/math/MultipiziererOptimierer.h)
 
 
 # Add tests

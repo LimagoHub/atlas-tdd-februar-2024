@@ -628,7 +628,7 @@ mistake in production. Such cleverness also leads to
 advise against the practice, and googletest doesn't provide a way to do it.
 
 In general, the recommended way to cause the code to behave differently under
-test is [Dependency Injection](http://en.wikipedia.org/wiki/Dependency_injection). You can inject
+test is [DependencyImpl Injection](http://en.wikipedia.org/wiki/Dependency_injection). You can inject
 different functionality from the test and from the production code. Since your
 production code doesn't link in the for-test logic at all (the
 [`testonly`](http://docs.bazel.build/versions/master/be/common-definitions.html#common.testonly) attribute for BUILD targets helps to ensure
