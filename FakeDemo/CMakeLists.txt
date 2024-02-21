@@ -9,7 +9,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 
 
-add_executable(FakeDemo main.cpp)
+add_executable(FakeDemo main.cpp dependecy_to_fake.cpp)
 
 
 # Add tests

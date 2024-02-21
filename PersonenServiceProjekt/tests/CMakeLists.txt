@@ -1,37 +1,32 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required (VERSION 3.12)
 
-# Avoid warning about DOWNLOAD_EXTRACT_TIMESTAMP in CMake 3.24:
-if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
-	cmake_policy(SET CMP0135 NEW)
-endif()
 
-include(FetchContent)
-FetchContent_Declare(
-		googletest
-		URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
-)
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-enable_testing()
 
-set(SOURCE test.cpp Mockpersonen_repository.h services/personen_service_impl_test.cpp services/personen_service_impl_test.h)
+
+
+# Add dependencies
+set( gtest_force_shared_crt ON CACHE BOOL "")
+add_subdirectory(google)
+set_target_properties(gtest PROPERTIES FOLDER Dependencies)
+set_target_properties(gmock PROPERTIES FOLDER Dependencies)
+set_target_properties(gtest_main PROPERTIES FOLDER Dependencies)
+set_target_properties(gmock_main PROPERTIES FOLDER Dependencies)
+set_target_properties(gmock_main gtest_main PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUDE_FROM_DEFAULT_BUILD 1)
+
+set(SOURCE
+	main.cpp
+		Mockpersonen_repository.h test.cpp test.cpp services/personen_service_impl_test.cpp services/personen_service_impl_test.h Mockblacklist_service.h)
 
 
 
 # Create test executable
 add_executable(PersonenServiceProjektTest ${SOURCE} ${HEADER}  )
 
-target_link_libraries(
-		PersonenServiceProjektTest
-		GTest::gtest_main
-		GTest::gmock
-)
-
-include(GoogleTest)
-gtest_discover_tests(PersonenServiceProjektTest)
 
 
+
+# Linking
+target_link_libraries(PersonenServiceProjektTest PRIVATE gtest gmock)
 
 # Mark it as test executable for CMake
 add_test(NAME PersonenServiceProjektTest COMMAND PersonenServiceProjektTest)
@@ -41,8 +36,8 @@ set_target_properties(PersonenServiceProjektTest PROPERTIES FOLDER Tests)
 
 # Build tests where other libraries reside
 set_target_properties(PersonenServiceProjektTest
-		PROPERTIES
-		ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
-		LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
-		RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
+	PROPERTIES
+	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
+	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
 )

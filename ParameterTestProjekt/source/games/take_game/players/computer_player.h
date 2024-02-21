@@ -5,6 +5,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
+#include <string>
 
 
 class computer_player {
@@ -19,7 +20,7 @@ public:
 
         const int moves[] = {3,1,1,2};
         int move = moves[stones % 4];
-        std::cout << "Computer nimmt " + std::to_string(move) + " Steine." << std<<endl;
+        std::cout << "Computer nimmt " + std::to_string(move) + " Steine." << std::endl;
 
         return move;
     }

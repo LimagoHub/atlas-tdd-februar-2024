@@ -13,7 +13,7 @@ set(SOURCE
 	main.cpp
 	myservice_using_dependency_test.cpp
 	myservice_using_dependency_test.h
-
+	../dependency_to_fake.h
 		globaltest.cpp globaltest.h)
 
 

@@ -9,5 +9,6 @@ class personen_service {
 
 public:
     virtual void speichern(person &person_) = 0;
+    virtual void speichern(std::string vorname, std::string nachname) = 0;
 
 };
