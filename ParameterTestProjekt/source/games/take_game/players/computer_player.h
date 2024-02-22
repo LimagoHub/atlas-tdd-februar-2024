@@ -6,21 +6,22 @@
 #include <iostream>
 #include <memory>
 #include <string>
-
+#include "../io/Writer.h"
 
 class computer_player {
 
    
-
+    Writer &writer;
 
 public:
 
+    explicit computer_player(Writer &writer) : writer(writer) {}
 
     unsigned do_turn(const unsigned &stones) const  {
 
         const int moves[] = {3,1,1,2};
         int move = moves[stones % 4];
-        std::cout << "Computer nimmt " + std::to_string(move) + " Steine." << std::endl;
+        writer.write( "Computer nimmt " + std::to_string(move) + " Steine");
 
         return move;
     }
