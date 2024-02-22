@@ -49,6 +49,23 @@ TEST_F(personen_service_impl_test, speichern__Unerwuenschte_Person__throws_perso
     }
 }
 
+TEST_F(personen_service_impl_test, speichern__unexpected_exception_in_blacklist_service__throws_personen_service_exception) {
+    try {
+        InSequence sequence;
+        // Arrange
+        person anyPerson{"John", "Doe"};
+        EXPECT_CALL(blacklistServiceMock, is_blacklisted(anyPerson)).WillOnce(Throw(std::invalid_argument{"Upps"}));
+        EXPECT_CALL(repositoryMock, save_or_update(anyPerson)).Times(0);
+        // Act
+        objectUnderTest.speichern(anyPerson);
+        // Assertion
+        FAIL() << "Exception expected";
+    } catch(const personen_service_exception &ex) {
+        EXPECT_THAT(ex.what(), StrEq("Ein Fehler ist aufgetreten"));
+    }
+}
+
+
 TEST_F(personen_service_impl_test, speichern__unexpected_exception_in_underlying_service__throws_personen_service_exception) {
     try {
         // Arrange

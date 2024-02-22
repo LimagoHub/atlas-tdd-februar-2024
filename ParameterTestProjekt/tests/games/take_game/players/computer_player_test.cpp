@@ -6,6 +6,7 @@
 
 TEST_P(computer_player_parameter_test, do_turn_happy_day) {
 
+
     EXPECT_CALL(writerMock, write("Computer nimmt " + std::to_string(expectedValue) + " Steine"));
     EXPECT_THAT(object_under_test.do_turn(stones), Eq(expectedValue));
 }

@@ -18,6 +18,7 @@ class computer_player_parameter_test : public computer_player_test,public WithPa
 protected:
     int stones;
     int expectedValue;
+
     void SetUp() override{
         std::tie<int, int>(stones, expectedValue) = GetParam();
 

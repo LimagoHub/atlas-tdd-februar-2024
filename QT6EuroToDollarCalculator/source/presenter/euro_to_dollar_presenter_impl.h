@@ -15,35 +15,24 @@ private:
 	euro_to_dollar_view* view_{ nullptr };
 	euro_to_dollar_calculator* model_{ nullptr };
 
-    static std::stringstream specifiy_format(double dollar)  {
-        std::stringstream ss;
 
-        ss << std::fixed;
-        ss.precision(2);
-        ss << dollar;
-        return ss;
-    }
 
 public:
 	euro_to_dollar_presenter_impl() = default;
 
 	void set_model(euro_to_dollar_calculator* model) override
 	{
-
 		model_ = model;
 	}
 
 	void set_view(euro_to_dollar_view* view) override
 	{
 		view_ = view;
-		//populate_items();
 	}
 
 	void populate_items() const override
 	{
-        view_->set_euro("0");
-        view_->set_dollar("0");
-        view_->set_rechnen_enabled(true);
+
 	}
 
     //Euro string aus view lesen
@@ -57,16 +46,6 @@ public:
 	void rechnen() const override
 	{
         //std::invalid_argument
-        try {
-            auto euroValue = std::stod(view_->get_euro());
-            auto dollar = model_->convert(euroValue);
-            std::stringstream ss = specifiy_format(dollar);
-            view_->set_dollar(ss.str());
-        }catch(const std::invalid_argument &ex) {
-            view_->set_dollar("Keine Zahl");
-        } catch (...) {
-            view_->set_dollar("Internal Server Error");
-        }
 
 
 	}
@@ -74,7 +53,7 @@ public:
 
     void beenden() const override
 	{
-        view_->dispose();
+
 	}
 
     /*
@@ -85,12 +64,7 @@ public:
 	void update_rechnen_action_state() const override
 	{
 
-        try {
-            std::stod(view_->get_euro());
-            view_->set_rechnen_enabled(true);
-        } catch (const std::invalid_argument &ex) {
-            view_->set_rechnen_enabled(false);
-        }
+
 
 	}
 };

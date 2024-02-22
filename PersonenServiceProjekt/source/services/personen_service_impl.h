@@ -29,7 +29,7 @@ public:
  *	Happy Day -> person an Save_or_update Methode uebergeben
  *
  */
-    void speichern(person &person_) override {
+    void speichern(person &person_)   override{
         try {
             speichernImpl(person_);
 
