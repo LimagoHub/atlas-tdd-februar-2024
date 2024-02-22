@@ -1,9 +1,5 @@
 cmake_minimum_required (VERSION 3.12)
 
-
-
-
-
 # Add dependencies
 set( gtest_force_shared_crt ON CACHE BOOL "")
 add_subdirectory(google)
@@ -13,29 +9,27 @@ set_target_properties(gtest_main PROPERTIES FOLDER Dependencies)
 set_target_properties(gmock_main PROPERTIES FOLDER Dependencies)
 set_target_properties(gmock_main gtest_main PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUDE_FROM_DEFAULT_BUILD 1)
 
-set(SOURCE
-	main.cpp
-        games/take_game/players/MockWriter.h games/take_game/players/computer_player_test.h games/take_game/players/computer_player_test.cpp)
-
-
+set(SOURCE test.cpp)
 
 # Create test executable
-add_executable(ParameterTestProjektTest ${SOURCE} ${HEADER}  )
-
-
-
+add_executable(EuroToDollarTest ${SOURCE} ${HEADER}  )
 
 # Linking
-target_link_libraries(ParameterTestProjektTest PRIVATE gtest gmock)
+target_link_libraries(
+		EuroToDollarTest
+		GTest::gtest_main
+		GTest::gmock
+)
+
 
 # Mark it as test executable for CMake
-add_test(NAME ParameterTestProjektTest COMMAND ParameterTestProjektTest)
+add_test(NAME EuroToDollarTest COMMAND EuroToDollarTest)
 
 # Push it to tests
-set_target_properties(ParameterTestProjektTest PROPERTIES FOLDER Tests)
+set_target_properties(EuroToDollarTest PROPERTIES FOLDER Tests)
 
 # Build tests where other libraries reside
-set_target_properties(ParameterTestProjektTest
+set_target_properties(EuroToDollarTest
 	PROPERTIES
 	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
 	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>"
