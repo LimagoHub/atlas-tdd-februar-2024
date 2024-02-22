@@ -13,7 +13,7 @@ enable_testing()
 add_executable(
 	EuroToDollarProject
 	source/main.cpp
-        source/presenter/euro_to_dollar_presenter.h source/presenter/euro_to_dollar_presenter_impl.h source/services/euro_to_dollar_calculator.h source/services/exchange_rate_service.h source/services/exchange_rate_service_impl.h source/view/euro_to_dollar_view.h)
+        source/presenter/euro_to_dollar_presenter.h source/presenter/euro_to_dollar_presenter_impl.h source/services/euro_to_dollar_calculator.h source/services/exchange_rate_service.h source/services/exchange_rate_service_impl.h source/view/euro_to_dollar_view.h source/services/euro_to_dollar_calculator_impl.h)
 
 
 # Add tests

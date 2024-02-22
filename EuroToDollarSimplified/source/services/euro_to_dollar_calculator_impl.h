@@ -14,7 +14,7 @@ public:
 	    try {
             return euro * exchange_rate_service_.get_rate_for("USD");
         } catch(...) {
-            throw std::runtime_error("Exchange Rate Service nicht erreichbar");
+            throw std::runtime_error("Exchange Rate Service ist nicht erreichbar");
         }
 	}
 };

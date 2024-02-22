@@ -1,5 +1,17 @@
 #include <iostream>
 
 int main() {
-	std::cout << "Hallo" << std::endl;
+    try {
+        std::cout << "Hallo" << std::endl;
+    } catch(...) {
+        std::cout << "Achtung Achtung" << std::endl;
+        std::cout << "Achtung Achtung" << std::endl;
+        std::cout << "Achtung Achtung" << std::endl;
+        std::cout << "Achtung Achtung" << std::endl;
+        std::cout << "Achtung Achtung" << std::endl;
+        std::cout << "Achtung Achtung" << std::endl;
+        std::cout << "Achtung Achtung" << std::endl;
+        std::cout << "Achtung Achtung" << std::endl;
+
+    }
 }
