@@ -50,7 +50,8 @@ public:
 	void rechnen() const override
 	{
 
-
+        view_->get_euro();
+        view_->set_dollar("Keine Zahl");
 
 
 	}
