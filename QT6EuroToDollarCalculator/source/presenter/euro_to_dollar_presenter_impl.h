@@ -15,23 +15,35 @@ private:
 	euro_to_dollar_view* view_{ nullptr };
 	euro_to_dollar_calculator* model_{ nullptr };
 
+    std::string specifiy_format(double dollar) const {
+        std::stringstream ss;
 
+        ss << std::fixed;
+        ss.precision(2);
+        ss << dollar;
+        return ss.str();
+    }
 
 public:
 	euro_to_dollar_presenter_impl() = default;
 
 	void set_model(euro_to_dollar_calculator* model) override
 	{
+
 		model_ = model;
 	}
 
 	void set_view(euro_to_dollar_view* view) override
 	{
 		view_ = view;
+		//populate_items();
 	}
 
 	void populate_items() const override
 	{
+        view_->set_euro("0");
+        view_->set_dollar("0");
+        view_->set_rechnen_enabled(true);
 
 	}
 
@@ -45,7 +57,21 @@ public:
     */
 	void rechnen() const override
 	{
-        //std::invalid_argument
+        try {
+            std::string euroValueAsString = view_->get_euro();
+            size_t endpos;
+            double euro = std::stod(euroValueAsString, &endpos);
+            if(euroValueAsString.length() != endpos) {
+                view_->set_dollar("Keine Zahl");
+                return;
+            }
+            auto dollar = model_->convert(euro);
+            view_->set_dollar(specifiy_format(dollar));
+        } catch (const std::invalid_argument &ex) {
+            view_->set_dollar("Keine Zahl");
+        } catch (const std::logic_error &ex) {
+            view_->set_dollar("Internal Server Error");
+        }
 
 
 	}
@@ -53,7 +79,7 @@ public:
 
     void beenden() const override
 	{
-
+        view_->dispose();
 	}
 
     /*
@@ -63,7 +89,18 @@ public:
      */
 	void update_rechnen_action_state() const override
 	{
-
+        try {
+            std::string euroValueAsString = view_->get_euro();
+            size_t endpos;
+            std::stod(euroValueAsString, &endpos);
+            if(euroValueAsString.length() != endpos) {
+                view_->set_rechnen_enabled(false);
+            } else {
+                view_->set_rechnen_enabled(true);
+            }
+        }  catch (const std::invalid_argument &ex) {
+            view_->set_rechnen_enabled(false);
+        }
 
 
 	}

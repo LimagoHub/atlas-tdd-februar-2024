@@ -34,7 +34,9 @@ public:
 
 	void populate_items() const override
 	{
-
+        view_->set_euro("0");
+        view_->set_dollar("0");
+        view_->set_rechnen_enabled(true);
 	}
 
     //Euro string aus view lesen
@@ -47,7 +49,7 @@ public:
     */
 	void rechnen() const override
 	{
-        //std::invalid_argument
+
 
 
 
@@ -56,7 +58,7 @@ public:
 
     void beenden() const override
 	{
-
+        view_->dispose();
 	}
 
     /*
