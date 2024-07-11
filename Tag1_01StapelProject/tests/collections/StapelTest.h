@@ -11,7 +11,10 @@ using namespace testing;
 
 class StapelTest: public Test{
 protected:
-    Stapel objectUnderTest;
+
+    Stapel objectUnderTest{};
+
+
 
     auto fillUpToLimitWithoutException()->void{
         for (int i = 0; i < 10; ++i) {

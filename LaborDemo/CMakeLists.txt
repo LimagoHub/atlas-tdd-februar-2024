@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 
-project(ParameterTestProjekt)
+project(LaborProject)
 
 
 set(CMAKE_CXX_STANDARD 17)
@@ -11,10 +11,13 @@ set(PROJ_CONFIG $<CONFIG>)
 
 
 add_executable(
-	ParameterTestProjekt 
+	LaborProject 
 	source/main.cpp
-        source/games/take_game/players/computer_player.h source/games/take_game/io/Writer.h
-		source/games/take_game/io/ConsoleWriter.h)
+		source/services/Dependency.h
+		source/services/DependencyImpl.h
+		source/services/MyServiceUsingDependency.h
+        tests/services/MockDependency.h
+)
 
 
 # Add tests

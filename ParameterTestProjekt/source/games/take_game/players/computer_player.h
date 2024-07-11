@@ -7,15 +7,16 @@
 #include <memory>
 #include <string>
 #include "../io/Writer.h"
+#include "../io/ConsoleWriter.h"
 
 class computer_player {
 
    
-    Writer &writer;
+    ConsoleWriter writer;
 
 public:
 
-    explicit computer_player(Writer &writer) : writer(writer) {}
+    explicit computer_player() {}
 
     unsigned do_turn(const unsigned &stones) const  {
 
